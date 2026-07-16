@@ -1,4 +1,4 @@
-# Sistema de Gestión de Casos Legales (SGCL)
+# Sistema de Gestión de Casos Legales (PA)
 
 Taller práctico: diseño de base de datos → programación en Python con Flask
 y SQLAlchemy (conector ORM) → exposición de la información mediante una
