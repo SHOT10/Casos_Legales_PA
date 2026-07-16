@@ -1,6 +1,6 @@
 # Lecciones Aprendidas — Taller: De Prototipo a API REST
 
-**Proyecto:** Sistema de Gestión de Casos Legales (SGCL)
+**Proyecto:** Sistema de Gestión de Casos Legales (PA)
 **Stack:** Python · Flask · SQLAlchemy · SQLite · JWT (PyJWT)
 
 ## 1. Objetivo del taller
