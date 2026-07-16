@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingresar — Casos Legales PA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="login-shell">
+    <div class="login-card">
+      <span class="mark">PA</span>
+      <h1>Casos Legales PA</h1>
+      <p class="sub">Sistema de gestión de casos legales</p>
+
+      <div class="login-error" id="loginError"></div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="usuario">Usuario</label>
+          <input type="text" id="usuario" name="usuario" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn" id="loginBtn">Ingresar a cuenta</button>
+      </form>
+
+      <div class="login-hint">
+        Usuario demo: jperez<br>
+        Contraseña demo: Password123
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+  <script>
+    if (Auth.getToken()) window.location.href = "/dashboard";
+
+    const form = document.getElementById("loginForm");
+    const errorBox = document.getElementById("loginError");
+    const btn = document.getElementById("loginBtn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorBox.classList.remove("is-visible");
+      btn.disabled = true;
+      btn.textContent = "Ingresando…";
+
+      try {
+        const data = await api("/auth/login", {
+          method: "POST",
+          auth: false,
+          body: {
+            usuario: document.getElementById("usuario").value.trim(),
+            password: document.getElementById("password").value,
+          },
+        });
+        Auth.setSession(data.token, data.usuario);
+        window.location.href = "/dashboard";
+      } catch (err) {
+        errorBox.textContent = err.message || "No se pudo iniciar sesión";
+        errorBox.classList.add("is-visible");
+        btn.disabled = false;
+        btn.textContent = "Ingresar a cuenta";
+      }
+    });
+  </script>
+</body>
+</html>

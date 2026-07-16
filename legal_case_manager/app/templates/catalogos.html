@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogos — Casos Legales PA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="shell">
+    {% include "_rail.html" %}
+
+    <main class="main">
+      <button class="mobile-toggle" data-mobile-toggle>☰</button>
+
+      <div class="topline">
+        <div>
+          <span class="eyebrow">Catálogos</span>
+          <h2>Aseguradoras y juzgados</h2>
+        </div>
+      </div>
+
+      <div class="layout-2col">
+        <section class="panel">
+          <div class="panel__head">
+            <h3>Aseguradoras</h3>
+            <button class="btn btn--sm" id="btnNuevaAseguradora">+ Agregar</button>
+          </div>
+          <div class="panel__body" id="listaAseguradoras">
+            <div class="empty">Cargando…</div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__head">
+            <h3>Juzgados</h3>
+            <button class="btn btn--sm" id="btnNuevoJuzgado">+ Agregar</button>
+          </div>
+          <div class="panel__body" id="listaJuzgados">
+            <div class="empty">Cargando…</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal aseguradora -->
+  <div class="modal-backdrop" id="modalAseguradora">
+    <div class="modal">
+      <div class="modal__head">
+        <h3>Nueva aseguradora</h3>
+        <button class="modal__close" data-close-modal>&times;</button>
+      </div>
+      <form id="formAseguradora">
+        <div class="modal__body">
+          <div class="field">
+            <label for="asegNombre">Nombre</label>
+            <input type="text" id="asegNombre" required>
+          </div>
+          <div class="field">
+            <label for="asegTelefono">Teléfono</label>
+            <input type="text" id="asegTelefono">
+          </div>
+        </div>
+        <div class="modal__foot">
+          <button type="button" class="btn btn--ghost" data-close-modal>Cancelar</button>
+          <button type="submit" class="btn">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal juzgado -->
+  <div class="modal-backdrop" id="modalJuzgado">
+    <div class="modal">
+      <div class="modal__head">
+        <h3>Nuevo juzgado</h3>
+        <button class="modal__close" data-close-modal>&times;</button>
+      </div>
+      <form id="formJuzgado">
+        <div class="modal__body">
+          <div class="field">
+            <label for="juzNombre">Nombre</label>
+            <input type="text" id="juzNombre" required placeholder="JUZGADO 1RO (PEDREGAL)">
+          </div>
+          <div class="field">
+            <label for="juzCircuito">Circuito</label>
+            <input type="text" id="juzCircuito">
+          </div>
+        </div>
+        <div class="modal__foot">
+          <button type="button" class="btn btn--ghost" data-close-modal>Cancelar</button>
+          <button type="submit" class="btn">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/catalogos.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel principal — Casos Legales PA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="shell">
+    {% include "_rail.html" %}
+
+    <main class="main">
+      <button class="mobile-toggle" data-mobile-toggle>☰</button>
+
+      <div class="topline">
+        <div>
+          <span class="eyebrow">Panel principal</span>
+          <h2>Buenos días</h2>
+        </div>
+        <span class="today" id="fechaHoy"></span>
+      </div>
+
+      <div class="stat-row" id="statRow">
+        <div class="stat stat--pendiente"><span class="n">—</span><span class="label">Pendientes</span></div>
+        <div class="stat stat--curso"><span class="n">—</span><span class="label">En curso</span></div>
+        <div class="stat stat--cerrado"><span class="n">—</span><span class="label">Cerrados</span></div>
+      </div>
+
+      <div class="layout-2col">
+        <section class="panel">
+          <div class="panel__head">
+            <h3>Expedientes recientes</h3>
+            <a href="/expedientes" class="docket">Ver todos →</a>
+          </div>
+          <div class="panel__body" id="recientesList">
+            <div class="empty">Cargando expedientes…</div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__head">
+            <h3>Agenda del día</h3>
+            <span class="count" id="agendaCount"></span>
+          </div>
+          <div class="panel__body" id="agendaList">
+            <div class="empty">Cargando agenda…</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

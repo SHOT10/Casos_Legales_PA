@@ -1,0 +1,60 @@
+erDiagram
+    ROLES ||--o{ USUARIOS : tiene
+    USUARIOS ||--o{ EXPEDIENTES : asignado_a
+    ASEGURADORAS ||--o{ EXPEDIENTES : cubre
+    JUZGADOS ||--o{ EXPEDIENTES : tramita
+    ESTADOS_EXPEDIENTE ||--o{ EXPEDIENTES : clasifica
+    EXPEDIENTES ||--o{ AGENDA : tiene_eventos
+
+    ROLES {
+        int id_rol PK
+        string nombre
+        string descripcion
+    }
+    USUARIOS {
+        int id_usuario PK
+        string nombre_completo
+        string usuario
+        string correo
+        string password_hash
+        int id_rol FK
+        boolean activo
+    }
+    ASEGURADORAS {
+        int id_aseguradora PK
+        string nombre
+        string telefono
+        string correo
+        boolean activo
+    }
+    JUZGADOS {
+        int id_juzgado PK
+        string nombre
+        string circuito
+        boolean activo
+    }
+    ESTADOS_EXPEDIENTE {
+        int id_estado PK
+        string nombre
+    }
+    EXPEDIENTES {
+        int id_expediente PK
+        string numero_expediente
+        string asegurado_nombre
+        int id_aseguradora FK
+        int id_juzgado FK
+        int id_estado FK
+        int id_usuario_asignado FK
+        text descripcion
+        date fecha_apertura
+        date fecha_cierre
+    }
+    AGENDA {
+        int id_evento PK
+        int id_expediente FK
+        string titulo
+        text descripcion
+        date fecha_evento
+        time hora_evento
+        boolean completado
+    }

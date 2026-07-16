@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda — Casos Legales PA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="shell">
+    {% include "_rail.html" %}
+
+    <main class="main">
+      <button class="mobile-toggle" data-mobile-toggle>☰</button>
+
+      <div class="topline">
+        <div>
+          <span class="eyebrow">Agenda</span>
+          <h2>Audiencias y eventos</h2>
+        </div>
+        <button class="btn" id="btnNuevoEvento">+ Nuevo evento</button>
+      </div>
+
+      <div class="toolbar">
+        <input type="date" id="fFecha">
+        <button class="btn btn--ghost btn--sm" id="btnHoy">Hoy</button>
+        <span class="spacer"></span>
+        <span class="docket" id="agendaFechaLegible"></span>
+      </div>
+
+      <section class="panel">
+        <div class="panel__body" id="agendaList">
+          <div class="empty">Cargando agenda…</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <div class="modal__head">
+        <h3>Nuevo evento</h3>
+        <button class="modal__close" data-close-modal>&times;</button>
+      </div>
+      <form id="eventoForm">
+        <div class="modal__body">
+          <div class="field">
+            <label for="id_expediente">Expediente</label>
+            <select id="id_expediente" required></select>
+          </div>
+          <div class="field">
+            <label for="titulo">Título del evento</label>
+            <input type="text" id="titulo" required placeholder="Audiencia preliminar">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="fecha_evento">Fecha</label>
+              <input type="date" id="fecha_evento" required>
+            </div>
+            <div class="field">
+              <label for="hora_evento">Hora (opcional)</label>
+              <input type="time" id="hora_evento">
+            </div>
+          </div>
+          <div class="field">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" rows="3" placeholder="Notas del evento (opcional)"></textarea>
+          </div>
+        </div>
+        <div class="modal__foot">
+          <button type="button" class="btn btn--ghost" data-close-modal>Cancelar</button>
+          <button type="submit" class="btn">Guardar evento</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/agenda.js') }}"></script>
+</body>
+</html>
